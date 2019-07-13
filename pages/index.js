@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Opacity from '@material-ui/icons/Opacity';
 import GTranslate from '@material-ui/icons/GTranslate';
+import Directions from '@material-ui/icons/Directions';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import { i18n, withTranslation } from '../i18n';
@@ -60,114 +61,128 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.main,
     padding: theme.spacing(6),
   },
+  mainWrap: {
+    position: 'relative',
+  }
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [1, 2, 3];
 
 function Landing(props) {
   const classes = useStyles();
-  const { t, onToggleDark } = props; // eslint-disable-line
+  const { t, onToggleDark, onToggleDir } = props;
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CameraIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Album layout
-          </Typography>
-          <IconButton
-            aria-label="theme"
-            className={classes.margin}
-            onClick={onToggleDark}
-          >
-            <Opacity />
-          </IconButton>
-          <IconButton
-            aria-label="lang"
-            className={classes.margin}
-            onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en')}
-          >
-            <GTranslate />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              {t('common:h1')}
+      <div className={classes.mainWrap}>
+        <AppBar position="relative">
+          <Toolbar>
+            <CameraIcon className={classes.icon} />
+            <Typography variant="h6" color="inherit" noWrap>
+              Album layout
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              {t('footer:description')}
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button variant="contained" color="primary">
-                    Main call to action
-                  </Button>
+            <IconButton
+              aria-label="theme"
+              className={classes.margin}
+              onClick={onToggleDark}
+            >
+              <Opacity />
+            </IconButton>
+            <IconButton
+              aria-label="diraction"
+              className={classes.margin}
+              onClick={() => onToggleDir('ltr')}
+            >
+              <Directions />
+            </IconButton>
+            <IconButton
+              aria-label="lang"
+              className={classes.margin}
+              onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en')}
+            >
+              <GTranslate />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <main>
+          {/* Hero unit */}
+          <div className={classes.heroContent}>
+            <Container maxWidth="sm">
+              <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                {t('common:h1')}
+              </Typography>
+              <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                {t('footer:description')}
+              </Typography>
+              <div className={classes.heroButtons}>
+                <Grid container spacing={2} justify="center">
+                  <Grid item>
+                    <Button variant="contained" color="primary">
+                      Main call to action
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined" color="primary">
+                      Secondary action
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Secondary action
-                  </Button>
+              </div>
+            </Container>
+          </div>
+          <Container className={classes.cardGrid} maxWidth="md">
+            {/* End hero unit */}
+            <Grid container spacing={4}>
+              {cards.map(card => (
+                <Grid item key={card} xs={12} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image="https://source.unsplash.com/random"
+                      title="Image title"
+                    />
+                    <CardContent className={classes.cardContent}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        Heading
+                      </Typography>
+                      <Typography>
+                        This is a media card. You can use this section to describe the content.
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" color="primary">
+                        View
+                      </Button>
+                      <Button size="small" color="primary">
+                        Edit
+                      </Button>
+                    </CardActions>
+                  </Card>
                 </Grid>
-              </Grid>
-            </div>
+              ))}
+            </Grid>
           </Container>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography>
-        <MadeWithLove />
-      </footer>
-      {/* End footer */}
+        </main>
+        {/* Footer */}
+        <footer className={classes.footer}>
+          <Typography variant="h6" align="center" gutterBottom>
+            Footer
+          </Typography>
+          <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+            Something here to give the footer a purpose!
+          </Typography>
+          <MadeWithLove />
+        </footer>
+        {/* End footer */}
+      </div>
     </React.Fragment>
   );
 }
 
 Landing.propTypes = {
   onToggleDark: PropTypes.func.isRequired,
+  onToggleDir: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 Landing.getInitialProps = async () => ({

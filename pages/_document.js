@@ -1,29 +1,36 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/styles';
 import flush from 'styled-jsx/server';
-import theme from '../components/theme';
+import HeadComponent from '../components/head';
 
 class MyDocument extends Document {
   render() {
     return (
-      <html lang="de" dir="rtl">
-        <Head>
-          <meta charSet="utf-8" />
-          {/* Use minimum-scale=1 to enable GPU rasterization */}
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-          />
-          {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-        </Head>
+      <html lang="en" dir="rtl">
+        <HeadComponent />
         <body>
-          <h1 id="loading_coy">Loading</h1>
+          <div
+            id="preloader"
+            style={{
+              position: 'absolute',
+              zIndex: 10000,
+              background: '#fafafa',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <img
+              style={{
+                opacity: 0.5,
+                position: 'absolute',
+                top: 'calc(50% - 50px)',
+                left: 'calc(50% - 50px)'
+              }}
+              src="/static/images/loading.gif"
+              alt="loading"
+            />
+          </div>
           <Main />
           <NextScript />
         </body>
@@ -68,7 +75,6 @@ MyDocument.getInitialProps = async ctx => {
 
   return {
     ...initialProps,
-    requiredNamespaces: ['common', 'footer'],
     namespacesRequired: ['common', 'footer'],
     // Styles fragment is rendered after the app and page rendering finish.
     styles: (

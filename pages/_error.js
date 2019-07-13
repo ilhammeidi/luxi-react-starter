@@ -15,7 +15,8 @@ class ErrorPagex extends React.Component {
     if (errorCode) {
       return (
         <div>
-          {t('description')}
+          {t('footer:description')}
+          {t('common:h1')}
           <Error statusCode={errorCode} />
         </div>
       );
@@ -42,4 +43,4 @@ ErrorPagex.defaultProps = {
   stars: 0,
 };
 
-export default withTranslation('footer')(ErrorPagex);
+export default withTranslation(['footer', 'common'])(ErrorPagex);
