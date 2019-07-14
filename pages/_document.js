@@ -7,7 +7,7 @@ import HeadComponent from '../components/head';
 class MyDocument extends Document {
   render() {
     return (
-      <html lang="en" dir="rtl">
+      <html lang="en" dir="ltr">
         <HeadComponent />
         <body>
           <div

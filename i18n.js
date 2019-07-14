@@ -4,7 +4,7 @@ module.exports = new NextI18Next({
   ignoreRoutes: ['/_next', '/static', '/public'],
   browserLanguageDetection: true,
   defaultLanguage: 'en',
-  otherLanguages: ['de'],
+  otherLanguages: ['de', 'ar', 'id', 'zh', 'pt'],
   fallbackLng: 'en',
   lng: 'en',
   keySeparator: false,

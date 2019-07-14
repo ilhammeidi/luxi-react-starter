@@ -14,7 +14,6 @@ const HeadComponent = props => {
     <Head>
       <meta charSet="utf-8" />
       {/* Use minimum-scale=1 to enable GPU rasterization */}
-      <title>{title}</title>
       <meta
         name="description"
         content={description}

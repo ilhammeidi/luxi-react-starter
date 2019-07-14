@@ -1,24 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
-import IconButton from '@material-ui/core/IconButton';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Opacity from '@material-ui/icons/Opacity';
-import GTranslate from '@material-ui/icons/GTranslate';
-import Directions from '@material-ui/icons/Directions';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import { i18n, withTranslation } from '../i18n';
+import Header from '../components/Header';
+import { withTranslation } from '../i18n';
 
 function MadeWithLove() {
   return (
@@ -75,39 +69,11 @@ function Landing(props) {
     <React.Fragment>
       <CssBaseline />
       <div className={classes.mainWrap}>
-        <AppBar position="relative">
-          <Toolbar>
-            <CameraIcon className={classes.icon} />
-            <Typography variant="h6" color="inherit" noWrap>
-              Album layout
-            </Typography>
-            <IconButton
-              aria-label="theme"
-              className={classes.margin}
-              onClick={onToggleDark}
-            >
-              <Opacity />
-            </IconButton>
-            <IconButton
-              aria-label="diraction"
-              className={classes.margin}
-              onClick={() => onToggleDir('ltr')}
-            >
-              <Directions />
-            </IconButton>
-            <IconButton
-              aria-label="lang"
-              className={classes.margin}
-              onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en')}
-            >
-              <GTranslate />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
+        <Header onToggleDark={onToggleDark} onToggleDir={onToggleDir} />
         <main>
           {/* Hero unit */}
           <div className={classes.heroContent}>
-            <Container maxWidth="sm">
+            <Container fixed>
               <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                 {t('common:h1')}
               </Typography>

@@ -22,7 +22,7 @@ class MyApp extends App {
     loading: true,
     documentLoaded: false,
     theme: {
-      direction: 'rtl',
+      direction: 'ltr',
       palette: {
         primary: {
           ...defaultTheme.palette.primary
@@ -93,7 +93,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Luxi Theme - Starter Project</title>
+          <title>Luxi Theme - React Next Material UI</title>
         </Head>
         <StylesProvider jss={jss}>
           <MuiThemeProvider theme={muiTheme}>
