@@ -15,7 +15,7 @@
 		"express": "^4.17.1",
 		"jss": "^10.0.0-alpha.21",
 		"jss-rtl": "^0.2.3",
-		"next": "^8.1.1-canary.42",
+		"next": "^9.3.2",
 		"next-i18next": "^0.44.0",
 		"pre-commit": "^1.2.2",
 		"prop-types": "^15.7.2",
